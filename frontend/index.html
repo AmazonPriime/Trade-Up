@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/game.css">
     <!-- JS -->
     <script src="js/main.js"></script>
+    <script src="js/util.js"></script>
   </head>
   <body>
     <main>
@@ -29,7 +31,7 @@
       </header>
 
       <div id="content" class="content">
-        <div id="menu" class="menu">
+        <div id="menu" class="menu hide">
           <div class="menu-item" onClick="show('play', 'menu')">Play</div>
           <div class="menu-item" onClick="show('about', 'menu')">About</div>
           <div class="menu-item" onClick="show('help', 'menu')">Help</div>
@@ -63,6 +65,61 @@
           <span class="back-btn" onClick="show('menu', 'scores')">←</span>
           <span>Scoreboard</span>
           <hr/>
+        </div>
+
+        <div id="play" class="game-container show">
+          <div class="game-top-bar">
+            <div id="time">5m 2s</div>
+            <div id="trades">100 trades</div>
+            <div id="value">£100.00 / £100.00</div>
+            <div id="quit">✕ QUIT</div>
+          </div>
+
+          <div id="current" class="current-item">
+            <div class="item-image" style="height: 200px !important;width: 200px !important;"></div>
+            <div>
+              <div class="item-text">
+                <i>£1 coin</i>
+              </div>
+              <br/>
+              <div class="item-value">
+                <i>£1.00</i>
+              </div>
+            </div>
+          </div>
+
+          <div class="trade-divide">
+            <hr/>
+            Trades
+            <hr/>
+          </div>
+
+          <div class="offers">
+            <div id="0" class="offer">
+              <div class="item-image"></div>
+              <div class="item-text">
+                <i>£1 coin</i>
+              </div>
+            </div>
+            <div id="1" class="offer">
+              <div class="item-image"></div>
+              <div class="item-text">
+                <i>£1 coin</i>
+              </div>
+            </div>
+            <div id="2" class="offer">
+              <div class="item-image"></div>
+              <div class="item-text">
+                <i>£1 coin</i>
+              </div>
+            </div>
+            <div id="3" class="offer">
+              <div class="item-image"></div>
+              <div class="item-text">
+                <i>£1 coin</i>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -1,3 +1,17 @@
+function show(toShow, toHide) {
+  const elShow = document.getElementById(toShow);
+  const elHide = document.getElementById(toHide);
+
+  if (elShow) {
+    elShow.classList.remove("hide");
+    elShow.classList.add("show");
+  }
+  if (elHide){
+    elShow.classList.remove("show");
+    elHide.classList.add("hide");
+  }
+}
+
 function renderTime(time) {
   if (parseInt(time / 60) > 0) {
     return `${parseInt(game.time / 60)}m ${game.time % 60}s`
