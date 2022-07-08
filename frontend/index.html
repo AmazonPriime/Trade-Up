@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/about.css">
     <!-- JS -->
     <script src="js/main.js"></script>
   </head>
@@ -29,11 +30,40 @@
       </header>
 
       <div id="content" class="content">
-        <div class="menu">
-          <div class="menu-item">Play</div>
-          <div class="menu-item">About</div>
-          <div class="menu-item">Help</div>
-          <div class="menu-item">Scores</div>
+        <div id="menu" class="menu">
+          <div class="menu-item" onClick="show('play', 'menu')">Play</div>
+          <div class="menu-item" onClick="show('about', 'menu')">About</div>
+          <div class="menu-item" onClick="show('help', 'menu')">Help</div>
+          <div class="menu-item" onClick="show('scores', 'menu')">Scores</div>
+        </div>
+
+        <div id="about" class="info-container about hide">
+          <span class="back-btn" onClick="show('menu', 'about')">←</span>
+          <span>Welcome to <b>Trade Up</b>!</span>
+          <hr/>
+          Trade up is a game where you begin from a <b>£1 coin</b> and work your way up to <b>£100</b>!
+          <br/><br/>
+          The items you trade for are from <b>REAL</b> eBay listings that sold on <a href="http://ebay.co.uk/" target="
+          ">eBay.co.uk</a>, more items are being added frequently to provide a large variety of trades.
+          <br/><br/>
+          Players can also submit their scores to a <b>global leaderboard</b> which tracks all the fastest players to reach the <b>£100</b> target!
+        </div>
+
+        <div id="help" class="info-container help hide">
+          <span class="back-btn" onClick="show('menu', 'help')">←</span>
+          <span>Help Page</span>
+          <hr/>
+          <br/>
+          FAQs will go here.
+          <br/><br/>
+          <hr/>
+          Anything missing, make an issue on the <a href="https://github.com/AmazonPriime/Trade-Up/issues" target="_blank">GitHub repository</a>.
+        </div>
+
+        <div id="scores" class="info-container scores hide">
+          <span class="back-btn" onClick="show('menu', 'scores')">←</span>
+          <span>Scoreboard</span>
+          <hr/>
         </div>
       </div>
 

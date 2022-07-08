@@ -1,5 +1,6 @@
 header {
   padding: 1em;
+  padding-top: 0.5em;
   border-bottom: 5px solid var(--main-border-colour);
   margin: 0;
   margin-bottom: 2em;
@@ -8,7 +9,6 @@ header {
 header .title {
   font-size: 3em;
   font-weight: bold;
-  margin-bottom: 0.25em;
 }
 
 header .title .theme-btn {

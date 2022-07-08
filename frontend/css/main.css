@@ -21,10 +21,6 @@
   --font: Verdana, sans-serif;
 }
 
-html {
-  height: 100%;
-}
-
 body {
   color: var(--main-text-colour);
   background-color: var(--main-background-colour);
@@ -37,7 +33,45 @@ main {
   max-width: 800px;
 }
 
+a {
+  color: white;
+  font-weight: bold;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--accent-colour);
+}
+
+
 .content {
-  height: auto;
   transition: height 0.5s ease;
+}
+
+.hide {
+  display: none !important;
+}
+
+.show {
+  display: inherit !important;
+}
+
+.back-btn {
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  color: var(--accent-colour);
+}
+
+.info-container {
+  border: 2px solid var(--main-border-colour);
+  border-radius: var(--main-border-radius);
+  padding: 1em;
+  margin: 1em;
+  font-size: 1.1em;
+}
+
+.info-container span {
+  font-size: 1.3em;
 }
