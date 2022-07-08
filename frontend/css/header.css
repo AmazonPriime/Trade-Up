@@ -1,0 +1,35 @@
+header {
+  padding: 1em;
+  border-bottom: 5px solid var(--main-border-colour);
+  margin: 0;
+  margin-bottom: 2em;
+}
+
+header .title {
+  font-size: 3em;
+  font-weight: bold;
+  margin-bottom: 0.25em;
+}
+
+header .title .theme-btn {
+  display: inline-block;
+  font-weight: lighter;
+  font-size: 0.5em;
+  margin-left: 0.125em;
+  border-radius: var(--main-border-radius);
+  cursor: pointer;
+}
+
+header .sub-title {
+  color: var(--sub-text-colour);
+}
+
+/* phone */
+@media (max-width: 420px) {
+  header .title {
+    font-size: 2em;
+  }
+  header .sub-title {
+    font-size: 0.9em;
+  }
+}

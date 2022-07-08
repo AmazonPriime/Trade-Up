@@ -1,0 +1,43 @@
+:root {
+  --main-text-colour: white;
+  --sub-text-colour: lightgrey;
+  --main-background-colour: #2f3640;
+  --sub-background-colour: #353b48;
+  --main-border-colour: #f5f6fa;
+  --main-border-radius: 10px;
+  --accent-colour: #4cd137;
+  --font: Verdana, sans-serif;
+  --transition: all 0.2s ease;
+}
+
+[data-theme="light"] {
+  --main-text-colour: white;
+  --sub-text-colour: lightgrey;
+  --main-background-colour: #2f3640;
+  --sub-background-colour: #353b48;
+  --main-border-colour: #f5f6fa;
+  --main-border-radius: 10px;
+  --accent-colour: #4cd137;
+  --font: Verdana, sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  color: var(--main-text-colour);
+  background-color: var(--main-background-colour);
+  font-family: var(--font);
+  margin: 0;
+}
+
+main {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.content {
+  height: auto;
+  transition: height 0.5s ease;
+}
