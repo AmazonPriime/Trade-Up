@@ -72,10 +72,17 @@
 .game-container .offers {
   display: flex;
   justify-content: center;
-  align-items: center;
   text-align: center;
   gap: 1em;
   flex-wrap: wrap;
+}
+
+.game-container .offer {
+  flex: 40%;
+}
+
+.game-container .offer .item-image {
+  margin: 0 auto;
 }
 
 @media (max-width: 465px) {
