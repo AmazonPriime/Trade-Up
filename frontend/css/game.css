@@ -56,7 +56,7 @@
   background-size: cover;
   height: 150px;
   width: 150px;
-  border: 2px solid var(--main-border-colour);
+  border: 3px solid var(--main-border-colour);
   border-radius: var(--main-border-radius);
   display: block;
 }
@@ -79,10 +79,20 @@
 
 .game-container .offer {
   flex: 40%;
+  cursor: pointer;
 }
 
 .game-container .offer .item-image {
   margin: 0 auto;
+  transition: var(--transition);
+}
+
+.game-container .offer .item-image:hover {
+  border-color: var(--accent-colour);
+}
+
+.game-container .offer:hover {
+  font-weight: bold;
 }
 
 @media (max-width: 465px) {

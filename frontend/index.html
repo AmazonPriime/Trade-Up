@@ -31,8 +31,8 @@
       </header>
 
       <div id="content" class="content">
-        <div id="menu" class="menu hide">
-          <div class="menu-item" onClick="show('play', 'menu')">Play</div>
+        <div id="menu" class="menu">
+          <div class="menu-item" onClick="show('play', 'menu'); play()">Play</div>
           <div class="menu-item" onClick="show('about', 'menu')">About</div>
           <div class="menu-item" onClick="show('help', 'menu')">Help</div>
           <div class="menu-item" onClick="show('scores', 'menu')">Scores</div>
@@ -67,12 +67,12 @@
           <hr/>
         </div>
 
-        <div id="play" class="game-container show">
+        <div id="play" class="game-container hide">
           <div class="game-top-bar">
             <div id="time">5m 2s</div>
             <div id="trades">100 trades</div>
             <div id="value">£100.00 / £100.00</div>
-            <div id="quit">✕ QUIT</div>
+            <div id="quit" onClick="show('menu', 'play'); quit()">✕ QUIT</div>
           </div>
 
           <div id="current" class="current-item">
@@ -90,30 +90,30 @@
 
           <div class="trade-divide">
             <hr/>
-            Trades
+            Trade
             <hr/>
           </div>
 
           <div class="offers">
-            <div id="0" class="offer">
+            <div id="0" class="offer" onClick="selectOffer(0)">
               <div class="item-image"></div>
               <div class="item-text">
                 <i>£1 coin</i>
               </div>
             </div>
-            <div id="1" class="offer">
+            <div id="1" class="offer" onClick="selectOffer(1)">
               <div class="item-image"></div>
               <div class="item-text">
                 <i>£1 coin</i>
               </div>
             </div>
-            <div id="2" class="offer">
+            <div id="2" class="offer" onClick="selectOffer(2)">
               <div class="item-image"></div>
               <div class="item-text">
                 <i>£1 coin</i>
               </div>
             </div>
-            <div id="3" class="offer">
+            <div id="3" class="offer" onClick="selectOffer(3)">
               <div class="item-image"></div>
               <div class="item-text">
                 <i>£1 coin</i>
