@@ -5,9 +5,12 @@
   --sub-background-colour: #353b48;
   --main-border-colour: #f5f6fa;
   --main-border-radius: 10px;
-  --accent-colour: #4cd137;
+  --accent-colour: #00a8ff;
+  --colour-bad: #e84118;
+  --colour-good: #4cd137;
+  --colour-mid: #fbc531;
   --font: Verdana, sans-serif;
-  --transition: all 0.2s ease;
+  --transition: all 0.3s ease-in-out;
 }
 
 [data-theme="light"] {
@@ -17,8 +20,10 @@
   --sub-background-colour: #353b48;
   --main-border-colour: #f5f6fa;
   --main-border-radius: 10px;
-  --accent-colour: #4cd137;
-  --font: Verdana, sans-serif;
+  --accent-colour: #00a8ff;
+  --colour-bad: #e84118;
+  --colour-good: #4cd137;
+  --colour-mid: #fbc531;
 }
 
 body {

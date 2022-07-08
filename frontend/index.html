@@ -13,8 +13,11 @@
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/game.css">
     <!-- JS -->
+    <script src="js/item.js"></script>
+    <script src="js/game.js"></script>
     <script src="js/main.js"></script>
     <script src="js/util.js"></script>
+    <script src="js/data.js"></script>
   </head>
   <body>
     <main>
@@ -69,20 +72,20 @@
 
         <div id="play" class="game-container hide">
           <div class="game-top-bar">
-            <div id="time">5m 2s</div>
-            <div id="trades">100 trades</div>
-            <div id="value">£100.00 / £100.00</div>
+            <div id="time">0s</div>
+            <div id="trades">0 trades</div>
+            <div id="value">£1 / £100.00</div>
             <div id="quit" onClick="show('menu', 'play'); quit()">✕ QUIT</div>
           </div>
 
           <div id="current" class="current-item">
-            <div class="item-image" style="height: 200px !important;width: 200px !important;"></div>
+            <div id="item-image" class="item-image" style="min-height: 200px !important;min-width: 200px !important;"></div>
             <div>
-              <div class="item-text">
+              <div id="item-name" class="item-text">
                 <i>£1 coin</i>
               </div>
               <br/>
-              <div class="item-value">
+              <div id="item-value" class="item-value">
                 <i>£1.00</i>
               </div>
             </div>
@@ -94,28 +97,28 @@
             <hr/>
           </div>
 
-          <div class="offers">
+          <div id="offers" class="offers">
             <div id="0" class="offer" onClick="selectOffer(0)">
-              <div class="item-image"></div>
-              <div class="item-text">
+              <div id="item-image" class="item-image"></div>
+              <div id="item-name" class="item-text">
                 <i>£1 coin</i>
               </div>
             </div>
             <div id="1" class="offer" onClick="selectOffer(1)">
-              <div class="item-image"></div>
-              <div class="item-text">
+              <div id="item-image" class="item-image"></div>
+              <div id="item-name" class="item-text">
                 <i>£1 coin</i>
               </div>
             </div>
             <div id="2" class="offer" onClick="selectOffer(2)">
-              <div class="item-image"></div>
-              <div class="item-text">
+              <div id="item-image" class="item-image"></div>
+              <div id="item-name" class="item-text">
                 <i>£1 coin</i>
               </div>
             </div>
             <div id="3" class="offer" onClick="selectOffer(3)">
-              <div class="item-image"></div>
-              <div class="item-text">
+              <div id="item-image" class="item-image"></div>
+              <div id="item-name" class="item-text">
                 <i>£1 coin</i>
               </div>
             </div>

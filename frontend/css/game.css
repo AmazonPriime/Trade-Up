@@ -59,6 +59,7 @@
   border: 3px solid var(--main-border-colour);
   border-radius: var(--main-border-radius);
   display: block;
+  transition: var(--transition);
 }
 
 .game-container .current-item {
@@ -84,15 +85,22 @@
 
 .game-container .offer .item-image {
   margin: 0 auto;
-  transition: var(--transition);
 }
 
 .game-container .offer .item-image:hover {
-  border-color: var(--accent-colour);
+  border-color: var(--sub-text-colour);
 }
 
-.game-container .offer:hover {
-  font-weight: bold;
+.game-container .offer .value-more {
+  border-color: var(--colour-good) !important;
+}
+
+.game-container .offer .value-same {
+  border-color: var(--colour-mid) !important;
+}
+
+.game-container .offer .value-less {
+  border-color: var(--colour-bad) !important;
 }
 
 @media (max-width: 465px) {
