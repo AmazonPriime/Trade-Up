@@ -44,6 +44,7 @@ function renderAllItems() {
   const offerElements = document.getElementById('offers');
   renderItem(currentElement, GAME.currentItem);
   Array.from(offerElements.children).map((el, i) => renderItem(el, GAME.currentOffers[i]))
+  highlightOffers()
 }
 
 // render the contents of an item
@@ -156,6 +157,18 @@ function submitScore() {
     value: GAME.currentItem.price
   });
   localStorage.setItem('trade-up-scores', JSON.stringify(scores));
+  // if global handle posting the score to the server
+  if (checkbox.checked) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://127.0.0.1:5000/scores', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+      name: input.value,
+      trades: GAME.trades,
+      time: GAME.time,
+      value: GAME.currentItem.price
+    }));
+  }
   // update to tell user it has been added
   const confirmationElement = document.getElementById('confirmation');
   const submissionElement = document.getElementById('submission');
