@@ -177,18 +177,30 @@ function submitScore() {
 }
 
 // render the scores from local storage
-function renderScores() {
+function renderScores(globalReq=false, scores=null) {
   let type = document.getElementById('scores-toggle');
   if (type)
     type = type.textContent.trim();
   if (!scoreTypes.includes(type))
     type = 'local';
 
-  let scores = null;
-  if (type === 'local') {
+  if (type !== 'local') {
     scores = JSON.parse(localStorage.getItem('trade-up-scores') || "[]");
-  } else {
+  } else if (!globalReq) {
     // insert logic for fetching scores from server
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://127.0.0.1:5000/scores', true);
+    xhr.onload = (e) => {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          renderScores(true, JSON.parse(xhr.responseText));
+        } else {
+          console.error(xhr.statusText);
+        }
+      }
+    }
+    xhr.send(null);
+    return;
   }
 
   if (!scores)
