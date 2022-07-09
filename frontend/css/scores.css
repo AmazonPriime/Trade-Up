@@ -68,6 +68,11 @@
   padding: 0.25em;
 }
 
+.scores .my-score {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 @media (max-width: 575px) {
   .scores .scores-table {
     font-size: 0.9em;

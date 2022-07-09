@@ -69,7 +69,7 @@
         <div id="scores" class="info-container scores hide">
           <span class="back-btn" onClick="show('menu', 'scores')">←</span>
           <span>Scoreboard</span>
-          <div id="scores-toggle" class="theme-btn scores-btn">
+          <div id="scores-toggle" class="theme-btn scores-btn" onClick="toggleScoreboard()">
             local
           </div>
           <hr/>
@@ -86,32 +86,10 @@
               </tr>
             </thead>
             <tbody id="scores-table">
-              <tr class="first">
-                <td class="ranking">1</td>
-                <td class="name">Winner winner chicken dinner</td>
-                <td class="time">time</td>
-                <td class="trades">trades</td>
-              </tr>
-              <tr class="second">
-                <td class="ranking">2</td>
-                <td class="name">Aww rip not first :()</td>
-                <td class="time">time</td>
-                <td class="trades">trades</td>
-              </tr>
-              <tr class="third">
-                <td class="ranking">3</td>
-                <td class="name">Yeay top 3</td>
-                <td class="time">time</td>
-                <td class="trades">trades</td>
-              </tr>
-              <tr>
-                <td class="ranking">4</td>
-                <td class="name">ripppp</td>
-                <td class="time">time</td>
-                <td class="trades">trades</td>
-              </tr>
             </tbody>
           </table>
+          <br/>
+          * Scores on global board which are <u>underlined</u> and <b>bold</b> are yours.
         </div>
 
         <div id="play" class="game-container hide">

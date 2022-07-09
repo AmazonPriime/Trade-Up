@@ -15,7 +15,7 @@ function show(toShow, toHide) {
 
 function renderTime(time) {
   if (parseInt(time / 60) > 0) {
-    return `${parseInt(game.time / 60)}m ${game.time % 60}s`
+    return `${parseInt(time / 60)}m ${time % 60}s`
   } else {
     return `${time % 60}s`
   }
@@ -45,4 +45,10 @@ function shuffle(array) {
   }
 
   return array;
+}
+
+function uuidv4() {
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  );
 }

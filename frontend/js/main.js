@@ -9,7 +9,7 @@ function play() {
   let data_copy = JSON.parse(JSON.stringify(data));
   GAME = new Game(data_copy);
   GAME.start();
-  setTime()
+  setTime();
   renderTopBar();
   renderAllItems();
   interval = setInterval(setTime, 1000);
@@ -35,7 +35,7 @@ function renderTopBar() {
   const tradesElement = document.getElementById('trades');
   const valueElement = document.getElementById('value');
   tradesElement.innerHTML = `${GAME.trades} trades`
-  valueElement.innerHTML = `£${GAME.currentItem.price} / £100`
+  valueElement.innerHTML = `£${GAME.currentItem.price} / £100`;
 }
 
 // render all the items
@@ -43,14 +43,13 @@ function renderAllItems() {
   const currentElement = document.getElementById('current');
   const offerElements = document.getElementById('offers');
   renderItem(currentElement, GAME.currentItem);
-  Array.from(offerElements.children).map((el, i) => renderItem(el, GAME.currentOffers[i]))
-  highlightOffers()
+  Array.from(offerElements.children).map((el, i) => renderItem(el, GAME.currentOffers[i]));
 }
 
 // render the contents of an item
 function renderItem(element, itemData) {
   const imgDiv = element.querySelector('#item-image');
-  imgDiv.style.backgroundImage = `url('${itemData.imageUri}')`
+  imgDiv.style.backgroundImage = `url('${itemData.imageUri}')`;
   imgDiv.classList.remove('value-more');
   imgDiv.classList.remove('value-same');
   imgDiv.classList.remove('value-less');
@@ -58,7 +57,7 @@ function renderItem(element, itemData) {
   nameDiv.innerHTML = `<i>${itemData.name}</i>`
   const valueDiv = element.querySelector('#item-value');
   if (valueDiv)
-    valueDiv.innerHTML = `<i>£${itemData.price}</i>`
+    valueDiv.innerHTML = `<i>£${itemData.price}</i>`;
 }
 
 // select trade offer
@@ -149,31 +148,37 @@ function submitScore() {
   const input = document.getElementById('player-name');
   const checkbox = document.getElementById('global');
   // save score to local storage
-  const scores = JSON.parse(localStorage.getItem('trade-up-scores') || "[]")
-  scores.push({
+  const scores = JSON.parse(localStorage.getItem('trade-up-scores') || "[]");
+  score = {
+    id: uuidv4(),
     name: input.value,
     trades: GAME.trades,
     time: GAME.time,
     value: GAME.currentItem.price
-  });
+  }
+  scores.push(score);
   localStorage.setItem('trade-up-scores', JSON.stringify(scores));
   // if global handle posting the score to the server
   if (checkbox.checked) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://127.0.0.1:5000/scores', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({
-      name: input.value,
-      trades: GAME.trades,
-      time: GAME.time,
-      value: GAME.currentItem.price
-    }));
+    xhr.send(JSON.stringify(score));
   }
   // update to tell user it has been added
   const confirmationElement = document.getElementById('confirmation');
   const submissionElement = document.getElementById('submission');
   confirmationElement.style.display = 'block';
   submissionElement.style.display = 'none';
+}
+
+function toggleScoreboard() {
+  const type = document.getElementById('scores-toggle');
+  if (type.textContent.trim() === 'local')
+    type.innerHTML = 'global'
+  else
+    type.innerHTML = 'local'
+  renderScores();
 }
 
 // render the scores from local storage
@@ -184,7 +189,7 @@ function renderScores(globalReq=false, scores=null) {
   if (!scoreTypes.includes(type))
     type = 'local';
 
-  if (type !== 'local') {
+  if (type === 'local') {
     scores = JSON.parse(localStorage.getItem('trade-up-scores') || "[]");
   } else if (!globalReq) {
     // insert logic for fetching scores from server
@@ -200,7 +205,6 @@ function renderScores(globalReq=false, scores=null) {
       }
     }
     xhr.send(null);
-    return;
   }
 
   if (!scores)
@@ -227,6 +231,11 @@ function renderScores(globalReq=false, scores=null) {
     if (score1.name < score2.name) return -1;
   });
 
+  let localScoreIds = []
+  if (type === 'global') {
+    localScoreIds = JSON.parse(localStorage.getItem('trade-up-scores') || "[]").map((s) => s.id);
+  }
+
   scores = scores.slice(0, 25);
 
   scores.map((score, index) => {
@@ -234,9 +243,12 @@ function renderScores(globalReq=false, scores=null) {
     if (index === 0)
       tr.classList.add('first');
     else if (index === 1)
-      tr.classList.add('second')
+      tr.classList.add('second');
     else if (index === 2)
-      tr.classList.add('third')
+      tr.classList.add('third');
+
+    if (localScoreIds.includes(score.id))
+      tr.classList.add('my-score');
 
     const ranking = document.createElement('td');
     ranking.innerHTML = index + 1;
