@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/game.css">
     <link rel="stylesheet" href="css/winner.css">
+    <link rel="stylesheet" href="css/scores.css">
     <!-- JS -->
     <script src="js/item.js"></script>
     <script src="js/game.js"></script>
@@ -39,7 +40,7 @@
           <div class="menu-item" onClick="show('play', 'menu'); play()">Play</div>
           <div class="menu-item" onClick="show('about', 'menu')">About</div>
           <div class="menu-item" onClick="show('help', 'menu')">Help</div>
-          <div class="menu-item" onClick="show('scores', 'menu')">Scores</div>
+          <div class="menu-item" onClick="show('scores', 'menu'); renderScores()">Scores</div>
         </div>
 
         <div id="about" class="info-container about hide">
@@ -68,7 +69,49 @@
         <div id="scores" class="info-container scores hide">
           <span class="back-btn" onClick="show('menu', 'scores')">←</span>
           <span>Scoreboard</span>
+          <div id="scores-toggle" class="theme-btn scores-btn">
+            local
+          </div>
           <hr/>
+          <div id="no-scores" class="no-scores">
+            There are no scores available to see.
+          </div>
+          <table id="scores-table-el" class="scores-table">
+            <thead>
+              <tr>
+                <th class="ranking">#</th>
+                <th class="name">name</th>
+                <th class="time">time</th>
+                <th class="trades">trades</th>
+              </tr>
+            </thead>
+            <tbody id="scores-table">
+              <tr class="first">
+                <td class="ranking">1</td>
+                <td class="name">Winner winner chicken dinner</td>
+                <td class="time">time</td>
+                <td class="trades">trades</td>
+              </tr>
+              <tr class="second">
+                <td class="ranking">2</td>
+                <td class="name">Aww rip not first :()</td>
+                <td class="time">time</td>
+                <td class="trades">trades</td>
+              </tr>
+              <tr class="third">
+                <td class="ranking">3</td>
+                <td class="name">Yeay top 3</td>
+                <td class="time">time</td>
+                <td class="trades">trades</td>
+              </tr>
+              <tr>
+                <td class="ranking">4</td>
+                <td class="name">ripppp</td>
+                <td class="time">time</td>
+                <td class="trades">trades</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <div id="play" class="game-container hide">

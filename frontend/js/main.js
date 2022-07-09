@@ -1,6 +1,7 @@
 // global variables
 let GAME = new Game();
 let interval = null; // used to update time
+const scoreTypes = ['local', 'global'];
 
 // resets the game state
 function play() {
@@ -43,7 +44,6 @@ function renderAllItems() {
   const offerElements = document.getElementById('offers');
   renderItem(currentElement, GAME.currentItem);
   Array.from(offerElements.children).map((el, i) => renderItem(el, GAME.currentOffers[i]))
-  highlightOffers();
 }
 
 // render the contents of an item
@@ -148,17 +148,91 @@ function submitScore() {
   const input = document.getElementById('player-name');
   const checkbox = document.getElementById('global');
   // save score to local storage
-  const scores = JSON.parse(localStorage.getItem("scores") || "[]")
+  const scores = JSON.parse(localStorage.getItem('trade-up-scores') || "[]")
   scores.push({
     name: input.value,
-    moves: GAME.moves,
+    trades: GAME.trades,
     time: GAME.time,
     value: GAME.currentItem.price
   });
-  localStorage.setItem('scores', JSON.stringify(scores));
+  localStorage.setItem('trade-up-scores', JSON.stringify(scores));
   // update to tell user it has been added
   const confirmationElement = document.getElementById('confirmation');
   const submissionElement = document.getElementById('submission');
   confirmationElement.style.display = 'block';
   submissionElement.style.display = 'none';
+}
+
+// render the scores from local storage
+function renderScores() {
+  let type = document.getElementById('scores-toggle');
+  if (type)
+    type = type.textContent.trim();
+  if (!scoreTypes.includes(type))
+    type = 'local';
+
+  let scores = null;
+  if (type === 'local') {
+    scores = JSON.parse(localStorage.getItem('trade-up-scores') || "[]");
+  } else {
+    // insert logic for fetching scores from server
+  }
+
+  if (!scores)
+    return;
+
+  // hide table and show no score message if there is no scores
+  const mainTableElement = document.getElementById('scores-table-el');
+  const noScoresElement = document.getElementById('no-scores');
+  mainTableElement.style.display = scores.length === 0 ? 'none' : 'table';
+  noScoresElement.style.display = scores.length === 0 ? 'block' : 'none';
+
+  // clear the table and then sort and loop through all the scores
+  const scoreTableElement = document.getElementById('scores-table');
+  scoreTableElement.innerHTML = '';
+  scores = scores.sort((score1, score2) => {
+    // sort by times asc
+    if (score1.time > score2.time) return 1;
+    if (score1.time < score2.time) return -1;
+    // sort by trades asc
+    if (score1.trades > score2.trades) return -1;
+    if (score1.trades < score2.trades) return 1;
+    // sort by name asc
+    if (score1.name > score2.name) return 1;
+    if (score1.name < score2.name) return -1;
+  });
+
+  scores = scores.slice(0, 25);
+
+  scores.map((score, index) => {
+    const tr = document.createElement('tr');
+    if (index === 0)
+      tr.classList.add('first');
+    else if (index === 1)
+      tr.classList.add('second')
+    else if (index === 2)
+      tr.classList.add('third')
+
+    const ranking = document.createElement('td');
+    ranking.innerHTML = index + 1;
+    ranking.classList.add('ranking');
+    tr.appendChild(ranking);
+
+    const name = document.createElement('td');
+    name.innerHTML = score.name;
+    name.classList.add('name');
+    tr.appendChild(name);
+
+    const time = document.createElement('td');
+    time.innerHTML = renderTime(score.time);
+    time.classList.add('time');
+    tr.appendChild(time);
+
+    const trades = document.createElement('td');
+    trades.innerHTML = score.trades || 0;
+    trades.classList.add('trades');
+    tr.appendChild(trades);
+
+    scoreTableElement.appendChild(tr);
+  });
 }
