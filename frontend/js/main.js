@@ -114,22 +114,28 @@ function renderWin() {
 
 // reset the winner page
 function resetWinnerPage() {
+  const input = document.getElementById('player-name');
+  const checkbox = document.getElementById('global');
+  const button = document.getElementById('submit-score');
   const confirmationElement = document.getElementById('confirmation');
   const submissionElement = document.getElementById('submission');
+  input.value = '';
+  checkbox.disabled = true;
+  button.classList.add('disabled');
   confirmationElement.style.display = 'none';
   submissionElement.style.display = 'block';
 }
 
 // valid the input for the player name input
 function checkInput() {
-  var input = document.getElementById('player-name');
-  var button = document.getElementById('submit-score');
-  var checkbox = document.getElementById('global');
+  const input = document.getElementById('player-name');
+  const button = document.getElementById('submit-score');
+  const checkbox = document.getElementById('global');
   if (input.value.length >= 2) {
-    button.classList.remove('disabled')
+    button.classList.remove('disabled');
     checkbox.disabled = false;
   } else {
-    button.classList.add('disabled')
+    button.classList.add('disabled');
     checkbox.disabled = true;
   }
   return input.value.length >= 2;
@@ -139,10 +145,10 @@ function checkInput() {
 function submitScore() {
   if (!checkInput())
     return;
-  var input = document.getElementById('player-name');
-  var checkbox = document.getElementById('global');
+  const input = document.getElementById('player-name');
+  const checkbox = document.getElementById('global');
   // save score to local storage
-  var scores = JSON.parse(localStorage.getItem("scores") || "[]")
+  const scores = JSON.parse(localStorage.getItem("scores") || "[]")
   scores.push({
     name: input.value,
     moves: GAME.moves,
@@ -155,7 +161,4 @@ function submitScore() {
   const submissionElement = document.getElementById('submission');
   confirmationElement.style.display = 'block';
   submissionElement.style.display = 'none';
-  input.disabled;
-  checkbox.disabled;
-  input.value = '';
 }
