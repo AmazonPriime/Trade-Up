@@ -4,10 +4,11 @@ function show(toShow, toHide) {
 
   if (elShow) {
     elShow.classList.remove("hide");
-    elShow.classList.add("show");
+    if (toShow !== 'menu')
+      elShow.classList.add("show");
   }
   if (elHide){
-    elShow.classList.remove("show");
+    elHide.classList.remove("show");
     elHide.classList.add("hide");
   }
 }

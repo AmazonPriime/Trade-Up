@@ -8,6 +8,7 @@ function play() {
   let data_copy = JSON.parse(JSON.stringify(data));
   GAME = new Game(data_copy);
   GAME.start();
+  setTime()
   renderTopBar();
   renderAllItems();
   interval = setInterval(setTime, 1000);
@@ -25,18 +26,15 @@ function setTime() {
   }
   ++GAME.time;
   var time = document.getElementById('time');
-  if (parseInt(GAME.time / 60) >= 1)
-    time.innerHTML = `${parseInt(GAME.time / 60)}m ${GAME.time % 60}s`
-  else
-    time.innerHTML = `${GAME.time % 60}s`
+  time.innerHTML = renderTime(GAME.time);
 }
 
+// render the topBar
 function renderTopBar() {
-  setTime();
   const tradesElement = document.getElementById('trades');
   const valueElement = document.getElementById('value');
   tradesElement.innerHTML = `${GAME.trades} trades`
-  valueElement.innerHTML = `£${GAME.currentItem.price} / £100.00`
+  valueElement.innerHTML = `£${GAME.currentItem.price} / £100`
 }
 
 // render all the items
@@ -45,6 +43,7 @@ function renderAllItems() {
   const offerElements = document.getElementById('offers');
   renderItem(currentElement, GAME.currentItem);
   Array.from(offerElements.children).map((el, i) => renderItem(el, GAME.currentOffers[i]))
+  highlightOffers();
 }
 
 // render the contents of an item
@@ -77,9 +76,15 @@ function selectOffer(index) {
     renderTopBar();
     GAME.selectingOffer = false;
     GAME.inProgress = true;
-  }, 1000);
+    // if the player has passed £100 then show winning page
+    if (GAME.currentItem.price >= 100) {
+      quit();
+      renderWin();
+    }
+  }, 500);
 }
 
+// highlight the offers based on their value relative to current item
 function highlightOffers() {
   const offerElements = document.getElementById('offers');
   const currentValue = GAME.currentItem.price;
@@ -93,4 +98,64 @@ function highlightOffers() {
     else
       imgDiv.classList.add('value-same');
   });
+}
+
+// render the winner screen which allows user to input their name and see scoreboard
+function renderWin() {
+  show('winner', 'play');
+  // update values with the game scores
+  const tradesElement = document.getElementById('results-trades');
+  const timeElement = document.getElementById('results-time');
+  const valueElement = document.getElementById('results-value');
+  tradesElement.innerHTML = GAME.trades;
+  timeElement.innerHTML = renderTime(GAME.time);
+  valueElement.innerHTML = `£${GAME.currentItem.price}`;
+}
+
+// reset the winner page
+function resetWinnerPage() {
+  const confirmationElement = document.getElementById('confirmation');
+  const submissionElement = document.getElementById('submission');
+  confirmationElement.style.display = 'none';
+  submissionElement.style.display = 'block';
+}
+
+// valid the input for the player name input
+function checkInput() {
+  var input = document.getElementById('player-name');
+  var button = document.getElementById('submit-score');
+  var checkbox = document.getElementById('global');
+  if (input.value.length >= 2) {
+    button.classList.remove('disabled')
+    checkbox.disabled = false;
+  } else {
+    button.classList.add('disabled')
+    checkbox.disabled = true;
+  }
+  return input.value.length >= 2;
+}
+
+// submit score to local storage and, if checked, the score server
+function submitScore() {
+  if (!checkInput())
+    return;
+  var input = document.getElementById('player-name');
+  var checkbox = document.getElementById('global');
+  // save score to local storage
+  var scores = JSON.parse(localStorage.getItem("scores") || "[]")
+  scores.push({
+    name: input.value,
+    moves: GAME.moves,
+    time: GAME.time,
+    value: GAME.currentItem.price
+  });
+  localStorage.setItem('scores', JSON.stringify(scores));
+  // update to tell user it has been added
+  const confirmationElement = document.getElementById('confirmation');
+  const submissionElement = document.getElementById('submission');
+  confirmationElement.style.display = 'block';
+  submissionElement.style.display = 'none';
+  input.disabled;
+  checkbox.disabled;
+  input.value = '';
 }
