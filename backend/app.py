@@ -79,3 +79,7 @@ def scores():
         return 'Score submitted!', 200
 
     return 'Something went wrong.', 500
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
