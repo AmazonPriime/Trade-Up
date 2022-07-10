@@ -26,7 +26,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: webfactory/ssh-agent@v0.5.4
-      with:
-        ssh-private-key: ${{ secrets.SSH_KEY }}
-      - name: Test SSH ECHO
-        run: ssh luke@${{ secrets.SERVER_IP }} "echo test"
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+      - run: ssh luke@${{ secrets.SERVER_IP }} "echo test"
