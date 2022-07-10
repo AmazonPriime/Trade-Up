@@ -62,7 +62,8 @@ def scores():
             'id': data.get('id'),
             'name': data.get('name'),
             'time': data.get('time'),
-            'trades': data.get('trades')
+            'trades': data.get('trades'),
+            'value': data.get('value')
         }
 
         scores = []
