@@ -3,8 +3,8 @@
 }
 
 .game-container hr {
-  border: 2px dashed var(--main-border-colour);
-  border-radius: var(--main-border-radius);
+  border: 2px dashed var(--border-colour);
+  border-radius: var(--border-radius);
   width: 100%;
 }
 
@@ -22,7 +22,7 @@
   font-size: 1em;
   margin: 0 auto;
   margin-bottom: 1em;
-  border-bottom: 2px solid var(--main-border-colour);
+  border-bottom: 2px solid var(--border-colour);
   padding-bottom: 0.25em;
 }
 
@@ -56,8 +56,8 @@
   background-size: cover;
   height: 150px;
   width: 150px;
-  border: 3px solid var(--main-border-colour);
-  border-radius: var(--main-border-radius);
+  border: 3px solid var(--border-colour);
+  border-radius: var(--border-radius);
   display: block;
   transition: var(--transition);
 }

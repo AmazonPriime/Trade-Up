@@ -10,8 +10,8 @@
 .menu .menu-item {
   flex: 40%;
   padding: 1em;
-  border: 2px solid var(--main-border-colour);
-  border-radius: var(--main-border-radius);
+  border: 2px solid var(--border-colour);
+  border-radius: var(--border-radius);
   text-align: center;
   font-size: 1.5em;
   cursor: pointer;
